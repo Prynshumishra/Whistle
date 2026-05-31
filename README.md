@@ -122,24 +122,43 @@ Component styles use hard-coded hex values that match the brand purple (`#8F62D4
 
 ---
 
-## Getting Started
+## APIs Used
+
+| Section | API | Endpoint |
+|---|---|---|
+| FAQ | JSONPlaceholder | `https://jsonplaceholder.typicode.com/posts?_limit=5` |
+| Why Whistle | DummyJSON | `https://dummyjson.com/products?limit=4` |
+
+Both endpoints are called inside `useEffect` with `useState`-managed `loading`, `error`, and data states. Errors are surfaced as user-friendly messages rather than blank screens.
+
+---
+
+## Approach
+
+The page is built as a flat composition of single-responsibility functional components — each section owns its own markup, styles, and (where needed) data-fetching logic with no shared global state. Styling uses a single plain-CSS file (`App.css`) sectioned by component, keeping the design tokens (brand purple `#8F62D4`, card background `#F0F9FF`) consistent throughout. Responsive behaviour is handled with four explicit breakpoints (≤600 px, 601–900 px, 901–1100 px, >1100 px) covering stacked mobile layouts, a two-column tablet view, and the full desktop grid.
+
+---
+
+## Setup
 
 ```bash
-# Install dependencies
+# 1. Install dependencies
 npm install
 
-# Start dev server (http://localhost:5173)
+# 2. Start dev server → http://localhost:5173
 npm run dev
 
-# Lint
+# 3. Lint
 npm run lint
 
-# Production build → dist/
+# 4. Production build → dist/
 npm run build
 
-# Preview production build locally
+# 5. Preview production build locally
 npm run preview
 ```
+
+> **Node requirement:** Node 18 or later recommended (Vite 6 / React 19).
 
 ---
 

@@ -6,6 +6,8 @@ function BookingForm() {
   const [mobile, setMobile] = useState('')
   const [consent, setConsent] = useState(false)
 
+  const isValid = name.trim().length > 0 && mobile.trim().length >= 10 && consent
+
   function handleSubmit(e) {
     e.preventDefault()
   }
@@ -77,7 +79,7 @@ function BookingForm() {
           </span>
         </label>
 
-        <button type="submit" className="booking-btn">Book a Free Scan</button>
+        <button type="submit" className="booking-btn" disabled={!isValid}>Book a Free Scan</button>
       </form>
     </section>
   )

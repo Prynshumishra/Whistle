@@ -5,8 +5,7 @@ function CloveSection() {
     <section className="clove-section">
       <div className="clove-card">
         <p className="clove-heading">
-          Book a Free 3D Teeth Scan and Orthodontist Consult in a Clove Dental Clinic near you.
-        </p>
+Book Free Orthodontist Consult at a Clove Dental Clinic. 450+ Clinics near you        </p>
         <div className="clove-right">
           <img src={cloveImg} alt="Clove Dental" className="clove-logo" />
           <button className="clove-find-btn">
