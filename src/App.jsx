@@ -3,7 +3,10 @@ import Header from './Header'
 import Hero from './Hero'
 import BookingForm from './BookingForm'
 import CloveSection from './CloveSection'
+import WhyWhistle from './WhyWhistle'
 import TickerBanner from './TickerBanner'
+import FAQ from './FAQ'
+import Footer from './Footer'
 
 function App() {
   return (
@@ -13,6 +16,9 @@ function App() {
       <BookingForm />
       <CloveSection />
       <TickerBanner />
+      <WhyWhistle />
+      <FAQ />
+      <Footer />
     </>
   )
 }
