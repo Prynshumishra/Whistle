@@ -122,14 +122,56 @@ Component styles use hard-coded hex values that match the brand purple (`#8F62D4
 
 ---
 
-## APIs Used
+## Task A — Figma Sections
+
+Three sections recreated from the Figma file as React functional components, matching layout, spacing, typography, and colours:
+
+| # | Component | What it recreates |
+|---|---|---|
+| 1 | `Hero.jsx` | Full-bleed hero with headline, purple-accented subtext, and patient image |
+| 2 | `BookingForm.jsx` | Lead-capture form — radio buttons, floating-label inputs, consent checkbox, submit button |
+| 3 | `WhyWhistle.jsx` | Feature card grid with fetch lifecycle, responsive carousel on mobile |
+
+All three use functional components, plain CSS, and no UI libraries.
+
+---
+
+## Task B — Dynamic Data
+
+Fully implemented in two components:
+
+**`FAQ.jsx`** — fetches from JSONPlaceholder
+```
+fetch('https://jsonplaceholder.typicode.com/posts?_limit=5')
+```
+- `useState` for `faqs`, `loading`, `error`
+- `useEffect` with fetch, `.ok` check, `.finally` to clear loading
+- Renders loading text, error text, or the accordion list
+
+**`WhyWhistle.jsx`** — fetches from DummyJSON
+```
+fetch('https://dummyjson.com/products?limit=4')
+```
+- `useState` for `cards`, `loading`, `error`
+- `useEffect` with fetch, `.ok` check, `.finally` to clear loading
+- Renders loading text, error text, or the card grid
 
 | Section | API | Endpoint |
 |---|---|---|
 | FAQ | JSONPlaceholder | `https://jsonplaceholder.typicode.com/posts?_limit=5` |
 | Why Whistle | DummyJSON | `https://dummyjson.com/products?limit=4` |
 
-Both endpoints are called inside `useEffect` with `useState`-managed `loading`, `error`, and data states. Errors are surfaced as user-friendly messages rather than blank screens.
+---
+
+## Task C — Interaction
+
+| Interaction | Location | Type |
+|---|---|---|
+| Accordion expand / collapse | `FAQ.jsx` | `useState` toggle — question opens/closes answer, icon switches `+` / `−` |
+| Card lift on hover | `WhyWhistle.jsx` + `App.css` | CSS `transform: translateY(-6px)` + `box-shadow` on `.why-card:hover` |
+| Call button hover | `Header.jsx` + `App.css` | CSS `.call-btn:hover` — darkens background, scales up |
+| Book button hover | `BookingForm.jsx` + `App.css` | CSS `.booking-btn:hover:not(:disabled)` — darkens + scales |
+| Find Clinic hover | `CloveSection.jsx` + `App.css` | CSS `.clove-find-btn:hover` — opacity fade |
 
 ---
 
