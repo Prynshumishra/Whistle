@@ -175,6 +175,12 @@ fetch('https://dummyjson.com/products?limit=4')
 
 ---
 
+## Challenges & Improvements
+
+The trickiest part was translating the Figma hero from pixel-perfect absolute positioning (`left: 916px`) into a layout that holds at every viewport width — the solution was switching to `display: flex; align-items: flex-end` and deriving the same top/bottom offsets mathematically through padding, rather than hard-coding coordinates. The mobile hero required a separate redesign pass because the desktop flex context leaked padding into smaller breakpoints, causing the image to overlap the text. Given more time, I would replace the plain-CSS file with CSS Modules to scope styles per component and eliminate the risk of class-name collisions as the project grows. I would also swap the JSONPlaceholder and DummyJSON data for a real dental-content API (or a local mock with realistic FAQ and feature copy), so the rendered text actually matches the brand rather than generic placeholder content. Finally, I'd add a proper form-submission handler with backend integration or at minimum a toast confirmation, so the "Book a Free Scan" button gives users meaningful feedback after they submit.
+
+---
+
 ## Approach
 
 The page is built as a flat composition of single-responsibility functional components — each section owns its own markup, styles, and (where needed) data-fetching logic with no shared global state. Styling uses a single plain-CSS file (`App.css`) sectioned by component, keeping the design tokens (brand purple `#8F62D4`, card background `#F0F9FF`) consistent throughout. Responsive behaviour is handled with four explicit breakpoints (≤600 px, 601–900 px, 901–1100 px, >1100 px) covering stacked mobile layouts, a two-column tablet view, and the full desktop grid.

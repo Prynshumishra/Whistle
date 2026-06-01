@@ -1,22 +1,35 @@
 import { useRef, useEffect, useState } from 'react'
 
+const CARDS = [
+  {
+    id: 1,
+    title: 'Invisible & Comfortable',
+    description: 'Clear aligners that are virtually invisible — wear them confidently at work, college, or out with friends.',
+    img: 'https://picsum.photos/seed/aligner-1/292/292',
+  },
+  {
+    id: 2,
+    title: 'Clinically Proven Results',
+    description: 'Backed by orthodontists across 450+ Clove Dental clinics with thousands of successful smile transformations.',
+    img: 'https://picsum.photos/seed/aligner-2/292/292',
+  },
+  {
+    id: 3,
+    title: 'Free 3D Teeth Scan',
+    description: 'Start with a complimentary 3D scan and orthodontist consultation — no commitment, no cost.',
+    img: 'https://picsum.photos/seed/aligner-3/292/292',
+  },
+  {
+    id: 4,
+    title: 'Flexible Payment Plans',
+    description: 'Affordable EMI options starting at just ₹3,999/month so your dream smile fits every budget.',
+    img: 'https://picsum.photos/seed/aligner-4/292/292',
+  },
+]
+
 function WhyWhistle() {
   const trackRef = useRef(null)
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 600)
-  const [cards, setCards] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-
-  useEffect(() => {
-    fetch('https://dummyjson.com/products?limit=4')
-      .then(res => {
-        if (!res.ok) throw new Error('Failed to load cards. Please try again later.')
-        return res.json()
-      })
-      .then(data => setCards(data.products))
-      .catch(err => setError(err.message))
-      .finally(() => setLoading(false))
-  }, [])
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth <= 600)
@@ -53,26 +66,20 @@ function WhyWhistle() {
     }
   }, [isMobile])
 
-  const displayCards = isMobile ? [...cards, ...cards, ...cards] : cards
+  const displayCards = isMobile ? [...CARDS, ...CARDS, ...CARDS] : CARDS
 
   return (
     <section className="why-section">
       <h2 className="why-heading">Why Whistle?</h2>
-
-      {loading && <p className="why-status">Loading…</p>}
-      {error && <p className="why-status why-error">{error}</p>}
-
-      {!loading && !error && (
-        <div className="why-grid" ref={trackRef}>
-          {displayCards.map((card, i) => (
-            <div className="why-card" key={i}>
-              <img src={card.thumbnail} alt={card.title} className="why-card-img" />
-              <p className="why-card-title">{card.title}</p>
-              <p className="why-card-desc">{card.description}</p>
-            </div>
-          ))}
-        </div>
-      )}
+      <div className="why-grid" ref={trackRef}>
+        {displayCards.map((card, i) => (
+          <div className="why-card" key={i}>
+            <img src={card.img} alt={card.title} className="why-card-img" />
+            <p className="why-card-title">{card.title}</p>
+            <p className="why-card-desc">{card.description}</p>
+          </div>
+        ))}
+      </div>
     </section>
   )
 }

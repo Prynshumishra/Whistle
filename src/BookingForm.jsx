@@ -46,7 +46,7 @@ function BookingForm() {
               id="fullName"
               type="text"
               className="booking-input"
-              placeholder=" "
+              placeholder="Ajay Kumar"
               value={name}
               onChange={e => setName(e.target.value)}
               required
